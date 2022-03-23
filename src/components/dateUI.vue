@@ -8,7 +8,7 @@
         class="col-5"
         min="1991-01-01"
         max="9999-12-31"
-        :disabled="isDisabled"
+        :disabled="isDateDisabled"
       />-
       <input
         id="dateto"
@@ -16,35 +16,55 @@
         name="date"
         class="col-5"
         max="9999-12-31"
-        :disabled="isDisabled"
+        :disabled="isDateDisabled"
       />
     </div>
   </div>
-  <div>{{ test }}</div>
+  <div>{{ dateState }}</div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, reactive, ref } from "vue";
+import { calNowTime } from "@/assets/js/calNowTime";
+
 export default defineComponent({
   name: "dateUI",
   props: {
     dateType: String,
   },
   setup(props) {
-    const isDisabled = ref<boolean>(true);
+    console.log(props.dateType)
+    const isDateDisabled = ref<boolean>(true);
     const backGroundStyle = ref<string>("background-color: rgb(200, 200, 200)");
-    const test = computed(() => {
-      console.log(props);
-      return props.dateType;
+
+    const dateState = computed({
+      get() {
+        return reactive(calNowTime());
+      },
+      set() {
+        console.log("a")
+        if (props.dateType === "Date (UTC +8)") {
+          console.log("aaa")
+          isDateDisabled.value = true
+          backGroundStyle.value = "background-color: rgb(200, 200, 200)"
+        } else if (props.dateType === "Date (UTC)") {
+          console.log("bbb")
+          isDateDisabled.value = true
+          backGroundStyle.value = "background-color: rgb(255, 255, 255)"
+        }
+      }
+
+
     });
-    console.log(test, "aaaaaa");
+
     return {
-      isDisabled,
+      isDateDisabled,
       backGroundStyle,
-      test,
+      dateState
     };
-  },
-});
+  }
+})
+
 </script>
 
 <style src="@/assets/css/panel.css" scoped></style>
