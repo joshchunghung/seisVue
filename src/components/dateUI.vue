@@ -5,7 +5,7 @@
       <input
         type="date"
         name="date"
-        class="col-5"
+        class="col-5 text-end"
         min="1991-01-01"
         max="9999-12-31"
         :value="dateState.day_90"
@@ -14,18 +14,17 @@
       <input
         type="date"
         name="date"
-        class="col-5"
+        class="col-5 text-end"
         max="9999-12-31"
         :value="endTime"
         :disabled="isDateDisabled"
       />
     </div>
   </div>
-  <div>{{ dateState }}</div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onUpdated, reactive, ref } from "vue";
+import { defineComponent, onUpdated, reactive, ref } from "vue";
 import { calNowTime } from "@/assets/js/calNowTime";
 
 export default defineComponent({
@@ -42,25 +41,24 @@ export default defineComponent({
 
     onUpdated(() => {
       if (props.dateType === "Date (UTC+8)") {
-        isDateDisabled.value = true
-        backGroundStyle.value = "background-color: rgb(200, 200, 200)"
-        endTime.value = dateState.todayLocal
+        isDateDisabled.value = true;
+        backGroundStyle.value = "background-color: rgb(200, 200, 200)";
+        endTime.value = dateState.todayLocal;
       } else if (props.dateType === "Date (UTC)") {
-        isDateDisabled.value = false
-        backGroundStyle.value = "background-color: rgb(255, 255, 255)"
-        endTime.value = dateState.todayUTC
+        isDateDisabled.value = false;
+        backGroundStyle.value = "background-color: rgb(255, 255, 255)";
+        endTime.value = dateState.todayUTC;
       }
-    })
+    });
 
     return {
       isDateDisabled,
       backGroundStyle,
       dateState,
-      endTime
+      endTime,
     };
-  }
-})
-
+  },
+});
 </script>
 
 <style src="@/assets/css/panel.css" scoped></style>
