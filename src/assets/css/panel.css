@@ -59,6 +59,13 @@
   margin: 0 -25%;
 }
 
+
+#Map div {
+  width: 50%;
+  height: 600px;  
+  padding: 0%;
+}
+
 #filter .form-control {
   display: inline-block;
   width: auto;

@@ -11,9 +11,8 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                id="lonMin"
                 name="lonMin"
-                value="120"
+                :value="lonValue.min"
               />
             </td>
             <td>
@@ -22,18 +21,16 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                id="latMax"
                 name="latMax"
-                value="26"
+                :value="latValue.max"
               />
               <br />
               <input
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                id="latMin"
                 name="latMin"
-                value="21"
+                :value="latValue.min"
               />
               <br />
               <label for="latMin">S</label>
@@ -43,9 +40,8 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                id="lonMax"
                 name="lonMax"
-                value="126"
+                :value="lonValue.max"
               />
               <label for="lonMax">E</label>
             </td>
@@ -57,9 +53,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 export default defineComponent({
   name: "locationUI",
+  setup() {
+    const latValue = reactive({
+      max: 26,
+      min: 21,
+    });
+    const lonValue = reactive({
+      max: 126,
+      min: 120,
+    });
+    return {
+      latValue,
+      lonValue,
+    };
+  },
 });
 </script>
 

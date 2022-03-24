@@ -40,8 +40,6 @@ export default defineComponent({
 
 <style scoped>
 #map {
-  padding: 0%;
-  width: 50%;
-  height: 600px;
+  height: 500px;
 }
 </style>
