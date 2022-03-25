@@ -8,7 +8,7 @@
         class="col-5 text-end"
         min="1991-01-01"
         max="9999-12-31"
-        :value="dateState.day_90"
+        v-model="dateState.day_90"
         :disabled="isDateDisabled"
       />-
       <input
@@ -16,7 +16,7 @@
         name="date"
         class="col-5 text-end"
         max="9999-12-31"
-        :value="endTime"
+        v-model="endTime"
         :disabled="isDateDisabled"
       />
     </div>
@@ -26,30 +26,28 @@
 <script lang="ts">
 import { defineComponent, onUpdated, reactive, ref } from "vue";
 import { calNowTime } from "@/assets/js/calNowTime";
-
+import { useStore } from "vuex";
 export default defineComponent({
   name: "dateUI",
-  props: {
-    dateType: String,
-  },
-  setup(props) {
+
+  setup() {
     const isDateDisabled = ref<boolean>(true);
     const backGroundStyle = ref<string>("background-color: rgb(200, 200, 200)");
 
     const dateState = reactive(calNowTime());
     let endTime = ref(dateState.todayLocal);
-
-    onUpdated(() => {
-      if (props.dateType === "Date (UTC+8)") {
-        isDateDisabled.value = true;
-        backGroundStyle.value = "background-color: rgb(200, 200, 200)";
-        endTime.value = dateState.todayLocal;
-      } else if (props.dateType === "Date (UTC)") {
-        isDateDisabled.value = false;
-        backGroundStyle.value = "background-color: rgb(255, 255, 255)";
-        endTime.value = dateState.todayUTC;
-      }
-    });
+    const test = useStore().dispatch("getTime", "TW");
+    //   onUpdated(() => {
+    //     if (props.dateType === "Date (UTC+8)") {
+    //       isDateDisabled.value = true;
+    //       backGroundStyle.value = "background-color: rgb(200, 200, 200)";
+    //       endTime.value = dateState.todayLocal;
+    //     } else if (props.dateType === "Date (UTC)") {
+    //       isDateDisabled.value = false;
+    //       backGroundStyle.value = "background-color: rgb(255, 255, 255)";
+    //       endTime.value = dateState.todayUTC;
+    //     }
+    //   });
 
     return {
       isDateDisabled,

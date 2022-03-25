@@ -7,28 +7,27 @@
         class="col-5 form-control number text-end"
         name="depth"
         min="0"
-        :value="depth.min"
+        v-model.number="depth.min"
       />-
       <input
         type="text"
         class="col-5 form-control number text-end"
         name="depth"
         max="6371"
-        :value="depth.max"
+        v-model.number="depth.max"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent } from "vue";
+import { useStore } from "vuex";
+
 export default defineComponent({
   name: "depthUI",
   setup() {
-    const depth = reactive({
-      max: 1000,
-      min: 0,
-    });
+    const depth = useStore().state.depth;
     return {
       depth,
     };

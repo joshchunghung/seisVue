@@ -12,7 +12,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="lonMin"
-                :value="lonValue.min"
+                v-model.number="lonValue.min"
               />
             </td>
             <td>
@@ -22,7 +22,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="latMax"
-                :value="latValue.max"
+                v-model.number="latValue.max"
               />
               <br />
               <input
@@ -30,7 +30,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="latMin"
-                :value="latValue.min"
+                v-model.number="latValue.min"
               />
               <br />
               <label for="latMin">S</label>
@@ -41,7 +41,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="lonMax"
-                :value="lonValue.max"
+                v-model.number="lonValue.max"
               />
               <label for="lonMax">E</label>
             </td>

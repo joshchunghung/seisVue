@@ -1,4 +1,4 @@
-export function calNowTime() {
+export function calNowTime(timeType) {
     const date = new Date();
     const yearUTC = date.getUTCFullYear();
     const monthUTC = date.getUTCMonth();
@@ -29,8 +29,13 @@ export function calNowTime() {
     const dday = date_90.getDate() < 10 ? "0" + date_90.getDate() : date_90.getDate();
     const day_90 = yy + "-" + mm + "-" + dday;
     const dd = {};
-    dd['todayUTC'] = todayUTC;
-    dd['todayLocal'] = todayLocal;
     dd['day_90'] = day_90;
+    if (timeType === "TW") {
+        dd['today'] = todayLocal;
+    } else {
+        dd['today'] = todayUTC;
+    }
+    
+        
     return dd;
 }

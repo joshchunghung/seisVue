@@ -7,10 +7,12 @@
           <twMap />
         </div>
         <div id="filter" class="col-lg-6 col-sm-12">
-          <catalogDateUI />
+          <catalogUI />
+          <dateUI />
           <depthUI />
           <magUI />
           <locationUI />
+          <buttonUI />
         </div>
       </div>
     </div>
@@ -21,19 +23,23 @@
 import { defineComponent } from "vue";
 import headerTitle from "@/components/headerTitle.vue";
 import twMap from "@/components/twMap.vue";
-import catalogDateUI from "@/components/catalogDateUI.vue";
+import catalogUI from "@/components/catalogUI.vue";
+import dateUI from "@/components/dateUI.vue";
 import depthUI from "@/components/depthUI.vue";
 import magUI from "@/components/magUI.vue";
 import locationUI from "@/components/locationUI.vue";
+import buttonUI from "@/components/queryEventUI.vue";
 export default defineComponent({
   name: "seisMap",
   components: {
     headerTitle,
     twMap,
-    catalogDateUI,
+    catalogUI,
+    dateUI,
     depthUI,
     magUI,
     locationUI,
+    buttonUI,
   },
 });
 </script>
