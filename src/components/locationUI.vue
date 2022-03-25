@@ -11,7 +11,6 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                name="lonMin"
                 v-model.number="location.W"
               />
             </td>
@@ -22,7 +21,6 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                name="latMax"
                 v-model.number="location.N"
               />
               <br />
@@ -30,7 +28,6 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                name="latMin"
                 v-model.number="location.S"
               />
               <br />
@@ -41,7 +38,6 @@
                 type="text"
                 size="8"
                 class="form-control number text-center"
-                name="lonMax"
                 v-model.number="location.E"
               />
               <label for="lonMax">E</label>
@@ -54,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({

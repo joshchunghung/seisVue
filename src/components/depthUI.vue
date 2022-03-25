@@ -5,14 +5,12 @@
       <input
         type="text"
         class="col-5 form-control number text-end"
-        name="depth"
         min="0"
         v-model.number="depth.min"
       />-
       <input
         type="text"
         class="col-5 form-control number text-end"
-        name="depth"
         max="6371"
         v-model.number="depth.max"
       />

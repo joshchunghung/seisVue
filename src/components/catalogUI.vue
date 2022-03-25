@@ -37,10 +37,11 @@ export default defineComponent({
   setup() {
     const catalogItem = ref(["CWB Rapid Reports", "Archived"]);
     const selected = ref<string>(catalogItem.value[0]);
+    // 使用vuex
     const store = useStore()
+    // 呼叫action
     store.dispatch("getCatalog", selected.value)
     const changeMode = () => {
-      console.log(selected.value)
       store.dispatch("getCatalog", selected.value)
     }
 
