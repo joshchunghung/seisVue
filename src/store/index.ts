@@ -3,6 +3,8 @@ import { calNowTime } from "@/assets/js/calNowTime";
 
 export default createStore({
   state: {
+    catalog: {},
+    dateType: {},
     mag: {
       min: 3,
       max: 10,
@@ -24,23 +26,26 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    calTime(state) {
-      const dd = calNowTime();
+    CALTIME(state, dateType) {
+      const dd = calNowTime(dateType);
+      state.dateType = dateType;
       state.date.start = dd.day_90;
-      state.date.end = dd.todayUTC;
+      state.date.end = dd.today;
     },
+    GETCATALOG(state, catalog) {
+      state.catalog = {};
+      state.catalog = catalog;
+    }
   },
   actions: {
-    getTime(context, timeType) {
-      if (timeType === "TW") {
-        //  context.commit.calTime("TW")
-        console.log("TW")
+    getCatalog(context, catalog) {
+      context.commit("GETCATALOG", catalog)
+      if (catalog === "Archived") {
+        context.commit("CALTIME", "Date (UTC)")
       } else {
-        console.log("UTC")
+        context.commit("CALTIME", "Date (UTC+8)")
       }
-     
-
-    },
+    }
   },
   modules: {},
 });

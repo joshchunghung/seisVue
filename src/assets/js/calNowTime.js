@@ -30,12 +30,12 @@ export function calNowTime(timeType) {
     const day_90 = yy + "-" + mm + "-" + dday;
     const dd = {};
     dd['day_90'] = day_90;
-    if (timeType === "TW") {
-        dd['today'] = todayLocal;
-    } else {
+    if (timeType === "Date (UTC)") {
         dd['today'] = todayUTC;
+    } else {
+        dd['today'] = todayLocal;
     }
-    
-        
+
+
     return dd;
 }

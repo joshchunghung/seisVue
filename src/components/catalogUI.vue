@@ -1,11 +1,9 @@
 <template>
   <div class="panel">
-    <div class="panel-label panel-label-corner">Catalog</div>
+    <div class="panel-label panel-label-corner">Catalogs</div>
     <div class="d-flex justify-content">
-      <select class="col-6">
-        <option v-for="catalog in catalogItem" :key="catalog">
-          {{ catalog }}
-        </option>
+      <select class="col-6" v-model="selected" @change="changeMode">
+        <option v-for="catalog in catalogItem" :key="catalog">{{ catalog }}</option>
       </select>
 
       <div id="helpIcon" class="col-1">
@@ -22,7 +20,7 @@
           />
         </svg>
         <div class="hover col-sm-12 text-start">
-          <b>Recent 90 days</b> : CWB Rapid Reports
+          <b>CWB Rapid Reports</b> : not-relocated catalog.
           <br />
           <b>Archived</b> : revised by CWB. (1991-01-01~)
         </div>
@@ -33,13 +31,23 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "catalogUI",
   setup() {
-    const catalogItem = ref(["Recent 90 days", "Archived"]);
+    const catalogItem = ref(["CWB Rapid Reports", "Archived"]);
+    const selected = ref<string>(catalogItem.value[0]);
+    const store = useStore()
+    store.dispatch("getCatalog", selected.value)
+    const changeMode = () => {
+      console.log(selected.value)
+      store.dispatch("getCatalog", selected.value)
+    }
 
     return {
       catalogItem,
+      changeMode,
+      selected
     };
   },
 });

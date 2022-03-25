@@ -12,17 +12,18 @@
                 size="8"
                 class="form-control number text-center"
                 name="lonMin"
-                v-model.number="lonValue.min"
+                v-model.number="location.W"
               />
             </td>
             <td>
-              <label for="latMax">N</label><br />
+              <label for="latMax">N</label>
+              <br />
               <input
                 type="text"
                 size="8"
                 class="form-control number text-center"
                 name="latMax"
-                v-model.number="latValue.max"
+                v-model.number="location.N"
               />
               <br />
               <input
@@ -30,7 +31,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="latMin"
-                v-model.number="latValue.min"
+                v-model.number="location.S"
               />
               <br />
               <label for="latMin">S</label>
@@ -41,7 +42,7 @@
                 size="8"
                 class="form-control number text-center"
                 name="lonMax"
-                v-model.number="lonValue.max"
+                v-model.number="location.E"
               />
               <label for="lonMax">E</label>
             </td>
@@ -54,20 +55,14 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
+import { useStore } from "vuex";
+
 export default defineComponent({
   name: "locationUI",
   setup() {
-    const latValue = reactive({
-      max: 26,
-      min: 21,
-    });
-    const lonValue = reactive({
-      max: 126,
-      min: 120,
-    });
+    const location = useStore().state.location
     return {
-      latValue,
-      lonValue,
+      location
     };
   },
 });
