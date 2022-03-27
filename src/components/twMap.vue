@@ -29,7 +29,8 @@ export default defineComponent({
     LControlLayers,
   },
   setup() {
-    let mapStates = ref(tileProviders);
+    const mapStates = ref(tileProviders);
+
     return {
       mapStates,
     };
