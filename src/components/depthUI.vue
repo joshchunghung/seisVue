@@ -6,28 +6,35 @@
         type="text"
         class="col-5 form-control number text-end"
         min="0"
-        v-model.number="depth.min"
+        :value="depth.min"
+        @change="ChangeDepth({ ...depth, min: parseFloat($event.target.value) })"
       />-
       <input
         type="text"
         class="col-5 form-control number text-end"
         max="6371"
-        v-model.number="depth.max"
+        :value="depth.max"
+        @change="ChangeDepth({ ...depth, max: parseFloat($event.target.value) })"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   name: "depthUI",
   setup() {
-    const depth = useStore().state.depth;
+    const store = useStore();
+    // const depth = store.getters.Depth;
+
+    const depth = computed(() => store.getters.Depth);
+
     return {
       depth,
+      ChangeDepth: (val) => store.commit("ChangeDepth", val),
     };
   },
 });

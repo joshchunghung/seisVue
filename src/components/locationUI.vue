@@ -56,9 +56,9 @@ import { useStore } from "vuex";
 export default defineComponent({
   name: "locationUI",
   setup() {
-    const location = useStore().state.location
+    const location = useStore().state.location;
     return {
-      location
+      location,
     };
   },
 });

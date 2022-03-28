@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import { calNowTime } from "@/assets/js/calNowTime";
 
 export default createStore({
+  // strict: true,
   state: {
     catalog: {},
     dateType: {},
@@ -24,8 +25,16 @@ export default createStore({
       end: "",
     },
   },
-  getters: {},
+  getters: {
+    Mag: (state) => state.mag,
+    Location: (state) => state.location,
+    Depth: (state) => state.depth,
+  },
   mutations: {
+    ChangeDepth(state, depth) {
+      state.depth.max = depth.max;
+      state.depth.min = depth.min;
+    },
     CALTIME(state, dateType) {
       const dd = calNowTime(dateType);
       state.dateType = dateType;
@@ -35,17 +44,17 @@ export default createStore({
     GETCATALOG(state, catalog) {
       state.catalog = {};
       state.catalog = catalog;
-    }
+    },
   },
   actions: {
     getCatalog(context, catalog) {
-      context.commit("GETCATALOG", catalog)
+      context.commit("GETCATALOG", catalog);
       if (catalog === "Archived") {
-        context.commit("CALTIME", "Date (UTC)")
+        context.commit("CALTIME", "Date (UTC)");
       } else {
-        context.commit("CALTIME", "Date (UTC+8)")
+        context.commit("CALTIME", "Date (UTC+8)");
       }
-    }
+    },
   },
   modules: {},
 });
